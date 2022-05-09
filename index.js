@@ -1,11 +1,11 @@
 const express = require('express');
-const { Users, PostsCategories, Categories, BlogPosts } = require('./models');
+const { Users } = require('./models');
 
 const app = express();
 
 app.get('/users', async (_req, res) => {
   try {
-    const users = await BlogPosts.findAll();
+    const users = await Users.findAll();
 
     return res.status(200).json(users);
   } catch (e) {
