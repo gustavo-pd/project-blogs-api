@@ -9,12 +9,18 @@ const LoginMiddleware = require('./middlewares/LoginMiddleware');
 const CategoriesController = require('./controllers/CategoriesController');
 const CategoriesMiddleware = require('./middlewares/CategoriesMiddleware');
 const BlogPostsController = require('./controllers/BlogPostsControllers');
+const AuthVerificationMiddleware = require('./middlewares/AuthVerificationMiddleware');
+const BlogPostsMiddleware = require('./middlewares/BlogPostsMiddlewares');
 
 app.use(express.json());
 
-app.get('/user', UserController.getAllUsers);
+app.get('/user',
+  AuthVerificationMiddleware.verifyToken,
+  UserController.getAllUsers);
 
-app.get('/user/:id', UserController.getOneUser);
+app.get('/user/:id',
+  AuthVerificationMiddleware.verifyToken,
+  UserController.getOneUser);
 
 app.post('/user', 
   UserMiddleware.validDisplayName,
@@ -28,17 +34,29 @@ app.post('/login',
   LoginMiddleware.validPassword,
   LoginController.postLogin);
 
-app.get('/categories', CategoriesController.getAllCategories);
+app.get('/categories',
+  AuthVerificationMiddleware.verifyToken,
+  CategoriesController.getAllCategories);
 
 app.post('/categories',
+  AuthVerificationMiddleware.verifyToken,
   CategoriesMiddleware.validName,
   CategoriesController.postCategories);
 
-app.get('/post', BlogPostsController.getAllPosts);
+app.get('/post',
+  AuthVerificationMiddleware.verifyToken,
+  BlogPostsController.getAllPosts);
 
-app.get('/post/:id', BlogPostsController.getOnePost);
+app.get('/post/:id',
+  AuthVerificationMiddleware.verifyToken,
+  BlogPostsController.getOnePost);
 
-app.post('/post', BlogPostsController.postPosts);
+app.post('/post',
+  AuthVerificationMiddleware.verifyToken,
+  BlogPostsMiddleware.validTitle,
+  BlogPostsMiddleware.validContent,
+  BlogPostsMiddleware.validCategoryId,
+  BlogPostsController.postPosts);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
