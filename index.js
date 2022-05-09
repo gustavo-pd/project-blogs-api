@@ -39,8 +39,8 @@ app.get('/categories',
   CategoriesController.getAllCategories);
 
 app.post('/categories',
-  AuthVerificationMiddleware.verifyToken,
   CategoriesMiddleware.validName,
+  AuthVerificationMiddleware.verifyToken,
   CategoriesController.postCategories);
 
 app.get('/post',
@@ -52,10 +52,10 @@ app.get('/post/:id',
   BlogPostsController.getOnePost);
 
 app.post('/post',
-  AuthVerificationMiddleware.verifyToken,
   BlogPostsMiddleware.validTitle,
   BlogPostsMiddleware.validContent,
   BlogPostsMiddleware.validCategoryId,
+  AuthVerificationMiddleware.verifyToken,
   BlogPostsController.postPosts);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
