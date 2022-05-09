@@ -1,18 +1,23 @@
+require('dotenv').config();
+
 const express = require('express');
-const { Users } = require('./models');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.get('/users', async (_req, res) => {
-  try {
-    const users = await Users.findAll();
+app.use(bodyParser.json());
 
-    return res.status(200).json(users);
-  } catch (e) {
-    console.log(e.message);
-    res.status(500).json({ message: 'Ocorreu um erro' });
-  }
-});
+const UserController = require('./controllers/UserController');
+const UserMiddleware = require('./middlewares/UserMiddleware');
+
+app.get('/users', UserController.getAllUsers);
+
+app.post('/users', 
+  UserMiddleware.validDisplayName,
+  UserMiddleware.validEmail,
+  UserMiddleware.validPassword,
+  UserMiddleware.searchEmail,
+  UserController.postUsers);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
