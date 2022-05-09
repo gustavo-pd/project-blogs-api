@@ -1,4 +1,5 @@
 const UserService = require('../services/UserService');
+const TokenMiddleware = require('../middlewares/TokenMiddleware');
 
 const getAllUsers = async (_req, res) => {
   try {
@@ -15,8 +16,9 @@ const postUsers = async (req, res) => {
   try {
     const { displayName, email, password, image } = req.body;
     const newUser = await UserService.postUsers({ displayName, email, password, image });
+    const token = TokenMiddleware.createToken(newUser.id);
 
-    res.status(201).json(newUser);
+    res.status(201).json(token);
   } catch (e) {
     console.log(e.message);
     res.status(500).json({ message: 'Ocorreu um erro' });
