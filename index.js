@@ -7,9 +7,9 @@ const UserMiddleware = require('./middlewares/UserMiddleware');
 
 app.use(express.json());
 
-app.get('/users', UserController.getAllUsers);
+app.get('/user', UserController.getAllUsers);
 
-app.post('/users', 
+app.post('/user', 
   UserMiddleware.validDisplayName,
   UserMiddleware.validEmail,
   UserMiddleware.validPassword,
