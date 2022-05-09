@@ -4,6 +4,8 @@ const app = express();
 
 const UserController = require('./controllers/UserController');
 const UserMiddleware = require('./middlewares/UserMiddleware');
+const LoginController = require('./controllers/LoginController');
+const LoginMiddleware = require('./middlewares/LoginMiddleware');
 
 app.use(express.json());
 
@@ -15,6 +17,11 @@ app.post('/user',
   UserMiddleware.validPassword,
   UserMiddleware.searchEmail,
   UserController.postUsers);
+
+app.post('/login',
+  LoginMiddleware.validEmail,
+  LoginMiddleware.validPassword,
+  LoginController.postLogin);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
