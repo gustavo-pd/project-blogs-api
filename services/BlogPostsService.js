@@ -3,7 +3,7 @@ const { BlogPosts, Users, Categories } = require('../models');
 const getAllPosts = async () => {
   const posts = await BlogPosts.findAll({
     include: [
-      { model: Users, as: 'user' },
+      { model: Users, as: 'user', attributes: { exclude: ['password'] } },
       { model: Categories, as: 'categories', through: { attributes: [] } },
     ],
   });
@@ -13,7 +13,7 @@ const getAllPosts = async () => {
 const getOnePost = async (id) => {
   const post = await BlogPosts.findByPk(id, {
     include: [
-      { model: Users, as: 'user' },
+      { model: Users, as: 'user', attributes: { exclude: ['password'] } },
       { model: Categories, as: 'categories', through: { attributes: [] } },
     ],
   });
