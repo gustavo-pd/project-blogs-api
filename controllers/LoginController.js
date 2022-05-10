@@ -12,7 +12,7 @@ const postLogin = async (req, res) => {
 
     const token = TokenMiddleware.createToken(checkUser.id);
 
-    res.status(200).json(token);
+    res.status(200).json({ token });
   } catch (e) {
     console.log(e.message);
     res.status(500).json({ message: 'Ocorreu um erro' });

@@ -14,42 +14,34 @@ const BlogPostsMiddleware = require('./middlewares/BlogPostsMiddlewares');
 
 app.use(express.json());
 
-app.get('/user',
-  AuthVerificationMiddleware.verifyToken,
-  UserController.getAllUsers);
-
-app.get('/user/:id',
-  AuthVerificationMiddleware.verifyToken,
-  UserController.getOneUser);
-
 app.post('/user', 
   UserMiddleware.validDisplayName,
   UserMiddleware.validEmail,
   UserMiddleware.validPassword,
   UserMiddleware.searchEmail,
   UserController.postUsers);
+  
+  app.get('/user',
+    AuthVerificationMiddleware.verifyToken,
+    UserController.getAllUsers);
+  
+  app.get('/user/:id',
+    AuthVerificationMiddleware.verifyToken,
+    UserController.getOneUser);
 
 app.post('/login',
   LoginMiddleware.validEmail,
   LoginMiddleware.validPassword,
   LoginController.postLogin);
 
-app.get('/categories',
-  AuthVerificationMiddleware.verifyToken,
-  CategoriesController.getAllCategories);
-
 app.post('/categories',
   CategoriesMiddleware.validName,
   AuthVerificationMiddleware.verifyToken,
   CategoriesController.postCategories);
-
-app.get('/post',
+    
+app.get('/categories',
   AuthVerificationMiddleware.verifyToken,
-  BlogPostsController.getAllPosts);
-
-app.get('/post/:id',
-  AuthVerificationMiddleware.verifyToken,
-  BlogPostsController.getOnePost);
+  CategoriesController.getAllCategories);
 
 app.post('/post',
   BlogPostsMiddleware.validTitle,
@@ -57,6 +49,14 @@ app.post('/post',
   BlogPostsMiddleware.validCategoryId,
   AuthVerificationMiddleware.verifyToken,
   BlogPostsController.postPosts);
+  
+app.get('/post',
+  AuthVerificationMiddleware.verifyToken,
+  BlogPostsController.getAllPosts);
+
+app.get('/post/:id',
+  AuthVerificationMiddleware.verifyToken,
+  BlogPostsController.getOnePost);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
 
