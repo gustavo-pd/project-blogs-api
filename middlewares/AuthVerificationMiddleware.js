@@ -1,13 +1,15 @@
 const TokenMiddleware = require('./TokenMiddleware');
 
-const verifyToken = (req, res, next) => {
+const verifyToken = async (req, res, next) => {
   const { authorization } = req.headers;
+  const validToken = TokenMiddleware.validateToken(authorization);
+  console.log(validToken);
 
   if (!authorization) {
     return res.status(401).json({ message: 'Token not found' });
   }
-  const validate = TokenMiddleware.validateToken(authorization);
-  if (!validate) {
+  
+  if (!validToken) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
 
@@ -16,4 +18,4 @@ const verifyToken = (req, res, next) => {
 
 module.exports = {
   verifyToken,
-}; 
+};
