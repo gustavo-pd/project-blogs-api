@@ -44,12 +44,14 @@
 </br>
 
   4. Utilize os seguintes comandos para iniciar o banco de dados, criar as tabelas e populá-las:
+    </br>
     * `npm run prestart`
     </br>
     * `npm run seed`
 </br>
 
   5. Inicie a aplicação, ela rodará na porta 3000:
+    </br>
     * `npm run start`
     </br>
     * `http://localhost:3000`
