@@ -27,17 +27,22 @@
 
 <h2 id="howtouse">Como executar o projeto</h2>
 
-  1. Clone o repositório
+  1. Clone o repositório:
+    </br>
     * `git clone git@github.com:gustavo-pd/project-blogs-api.git`.
+    </br>
     * Entre na pasta do repositório que você acabou de clonar:
+    </br>
       * `cd project-blogs-api`
 </br>
 
   2. Instale as dependências:
+  </br>
     * `npm install`
 </br>
 
   3. Configure as variáveis de ambiente:
+  </br>
     * Crie o arquivo .env na raiz do projeto e crie as variáveis de ambiente utilizando seu user e password do Mysql.
 
 <img src="./images/env.png" alt=".env">
