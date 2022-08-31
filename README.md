@@ -21,9 +21,7 @@
 
 <h2 id="development">Desenvolvimento</h2>
 
-<p>Neste projeto pude implementar as tabelas do banco de dados utilizando MySQL, com o Sequelize para auxiliar.</p>
-<p>Após isso pude criar uma API CRUD com ORM.</p>
-
+<p>Neste projeto pude arquitetar e desenvolver uma API de um CRUD (seguindo os princípios REST) posts de blog em ORM, utilizando o Sequelize e o NodeJS. Foram criadas tabelas no MySQL, onde é possível criar, editar, deletar e ler posts.</p>
 
 <h2 id="howtouse">Como executar o projeto</h2>
 
