@@ -31,7 +31,7 @@
     </br>
     * `git clone git@github.com:gustavo-pd/project-blogs-api.git`.
     </br>
-    * Entre na pasta do repositório que você acabou de clonar:
+    Entre na pasta do repositório que você acabou de clonar:
     </br>
       * `cd project-blogs-api`
 </br>
@@ -39,7 +39,7 @@
   2. Instale as dependências:
   </br>
     * `npm install`
-</br>
+  </br>
 
   3. Configure as variáveis de ambiente:
   </br>
