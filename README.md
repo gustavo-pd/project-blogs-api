@@ -37,13 +37,14 @@
 </br>
 
   2. Instale as dependências:
-  </br>
+    </br>
     * `npm install`
-  </br>
+</br>
 
   3. Configure as variáveis de ambiente:
-  </br>
+    </br>
     * Crie o arquivo .env na raiz do projeto e crie as variáveis de ambiente utilizando seu user e password do Mysql.
+</br>
 
 <img src="./images/env.png" alt=".env">
 </br>
